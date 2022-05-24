@@ -16,6 +16,23 @@ const video = document.querySelector("video");
 
 playPauseBtn.addEventListener("click", togglePlay);
 
+document.addEventListener("keydown", (e) => {
+  switch (e.key.toLocaleLowerCase()) {
+    case " ":
+    case "k":
+      togglePlay();
+      break;
+  }
+});
+
 function togglePlay() {
   video.paused ? video.play() : video.pause();
 }
+
+video.addEventListener("play", () => {
+  videoContainer.classList.remove("paused");
+});
+
+video.addEventListener("pause", () => {
+  videoContainer.classList.add("paused");
+});
