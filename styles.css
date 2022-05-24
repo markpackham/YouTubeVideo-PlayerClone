@@ -54,3 +54,11 @@ video {
   width: 30px;
   font-size: 1.1rem;
 }
+
+.video-container.paused .pause-icon {
+  display: none;
+}
+
+.video-container:none(.paused) .play-icon {
+  display: none;
+}
