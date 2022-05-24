@@ -17,10 +17,38 @@ const video = document.querySelector("video");
 playPauseBtn.addEventListener("click", togglePlay);
 
 document.addEventListener("keydown", (e) => {
-  switch (e.key.toLocaleLowerCase()) {
+  const tagName = document.activeElement.tagName.toLowerCase();
+
+  if (tagName === "input") return;
+
+  switch (e.key.toLowerCase()) {
     case " ":
+      if (tagName === "button") return;
     case "k":
       togglePlay();
+      break;
+    case "f":
+      toggleFullScreenMode();
+      break;
+    case "t":
+      toggleTheaterMode();
+      break;
+    case "i":
+      toggleMiniPlayerMode();
+      break;
+    case "m":
+      toggleMute();
+      break;
+    case "arrowleft":
+    case "j":
+      skip(-5);
+      break;
+    case "arrowright":
+    case "l":
+      skip(5);
+      break;
+    case "c":
+      toggleCaptions();
       break;
   }
 });
