@@ -52,6 +52,16 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Playback Speed
+speedBtn.addEventListener("click", changePlaybackSpeed);
+
+function changePlaybackSpeed() {
+  let newPlaybackRate = video.playbackRate + 0.25;
+  if (newPlaybackRate > 2) newPlaybackRate = 0.25;
+  video.playbackRate = newPlaybackRate;
+  speedBtn.textContent = `${newPlaybackRate}x`;
+}
+
 // Captions
 const captions = video.textTracks[0];
 captions.mode = "hidden";
