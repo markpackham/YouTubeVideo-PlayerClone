@@ -51,6 +51,21 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// View Modes
+theaterBtn.addEventListener("click", toggleTheaterMode);
+fullScreenBtn.addEventListener("click", toggleFullScreenMode);
+miniPlayerBtn.addEventListener("click", toggleMiniPlayerMode);
+
+function toggleTheaterMode() {
+  videoContainer.classList.toggle("theater");
+}
+
+function toggleFullScreenMode() {
+  videoContainer.classList.toggle("fullscreen");
+}
+
+function toggleMiniPlayerMode() {}
+
 // Play/Pause
 playPauseBtn.addEventListener("click", togglePlay);
 video.addEventListener("click", togglePlay);
