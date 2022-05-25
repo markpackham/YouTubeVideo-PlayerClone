@@ -52,6 +52,30 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Duration
+video.addEventListener("loadeddata", () => {
+  totalTimeElem.textContent = formatDuration(video.duration);
+});
+
+const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
+  minimumIntegerDigits: 2,
+});
+
+function formatDuration(time) {
+  const seconds = Math.floor(time % 60);
+  const minutes = Math.floor(time / 60) % 60;
+  const hours = Math.floor(time % 3600);
+
+  if (hours === 0) {
+    // so if the time in seconds is 9 then it will say 09 instead of just 9
+    return `${minutes}:${leadingZeroFormatter.format(seconds)}`;
+  } else {
+    return `${hours}:${leadingZeroFormatter.format(
+      minutes
+    )}:${leadingZeroFormatter.format(seconds)}`;
+  }
+}
+
 // Volume
 muteBtn.addEventListener("click", toggleMute);
 volumeSlider.addEventListener("input", (e) => {
