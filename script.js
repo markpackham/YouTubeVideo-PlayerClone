@@ -80,6 +80,10 @@ function formatDuration(time) {
   }
 }
 
+function skip(duration) {
+  video.currentTime += duration;
+}
+
 // Volume
 muteBtn.addEventListener("click", toggleMute);
 volumeSlider.addEventListener("input", (e) => {
