@@ -61,10 +61,19 @@ function toggleTheaterMode() {
 }
 
 function toggleFullScreenMode() {
-  videoContainer.classList.toggle("fullscreen");
+  if (document.fullscreenElement == null) {
+    videoContainer.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 }
 
 function toggleMiniPlayerMode() {}
+
+document.addEventListener("fullscreenchange", () => {
+  // changes icon used
+  videoContainer.classList.toggle("full-screen", document.fullscreenElement);
+});
 
 // Play/Pause
 playPauseBtn.addEventListener("click", togglePlay);
