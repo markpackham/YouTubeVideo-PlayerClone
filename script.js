@@ -52,6 +52,18 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Captions
+const captions = video.textTracks[0];
+captions.mode = "hidden";
+
+captionsBtn.addEventListener("click", toggleCaptions);
+
+function toggleCaptions() {
+  const isHidden = captions.mode === "hidden";
+  captions.mode = isHidden ? "showing" : "hidden";
+  videoContainer.classList.toggle("captions", isHidden);
+}
+
 // Duration
 video.addEventListener("loadeddata", () => {
   totalTimeElem.textContent = formatDuration(video.duration);
