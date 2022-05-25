@@ -57,6 +57,10 @@ video.addEventListener("loadeddata", () => {
   totalTimeElem.textContent = formatDuration(video.duration);
 });
 
+video.addEventListener("timeupdate", () => {
+  currentTimeElem.textContent = formatDuration(video.currentTime);
+});
+
 const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
   minimumIntegerDigits: 2,
 });
@@ -64,7 +68,7 @@ const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
 function formatDuration(time) {
   const seconds = Math.floor(time % 60);
   const minutes = Math.floor(time / 60) % 60;
-  const hours = Math.floor(time % 3600);
+  const hours = Math.floor(time / 3600);
 
   if (hours === 0) {
     // so if the time in seconds is 9 then it will say 09 instead of just 9
