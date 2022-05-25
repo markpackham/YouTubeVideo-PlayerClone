@@ -68,11 +68,25 @@ function toggleFullScreenMode() {
   }
 }
 
-function toggleMiniPlayerMode() {}
+function toggleMiniPlayerMode() {
+  if (videoContainer.classList.contains("mini-player")) {
+    document.exitPictureInPicture();
+  } else {
+    video.requestPictureInPicture();
+  }
+}
 
 document.addEventListener("fullscreenchange", () => {
   // changes icon used
   videoContainer.classList.toggle("full-screen", document.fullscreenElement);
+});
+
+video.addEventListener("enterpictureinpicture", () => {
+  videoContainer.classList.add("mini-player");
+});
+
+video.addEventListener("leavepictureinpicture", () => {
+  videoContainer.classList.remove("mini-player");
 });
 
 // Play/Pause
