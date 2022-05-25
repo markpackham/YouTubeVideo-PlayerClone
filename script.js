@@ -17,6 +17,7 @@ const video = document.querySelector("video");
 document.addEventListener("keydown", (e) => {
   const tagName = document.activeElement.tagName.toLowerCase();
 
+  // don't effect the video if you're doing somehting else like submitting a YouTube comment
   if (tagName === "input") return;
 
   switch (e.key.toLowerCase()) {
@@ -49,6 +50,31 @@ document.addEventListener("keydown", (e) => {
       toggleCaptions();
       break;
   }
+});
+
+// Volume
+muteBtn.addEventListener("click", toggleMute);
+volumeSlider.addEventListener("input", (e) => {
+  video.volume = e.target.value;
+  video.muted = e.target.value === 0;
+});
+
+function toggleMute() {
+  video.muted = !video.muted;
+}
+
+video.addEventListener("volumechange", () => {
+  volumeSlider.value = video.volume;
+  let volumeLevel;
+  if (video.muted || video.volume === 0) {
+    volumeSlider.value = 0;
+    volumeLevel = "muted";
+  } else if (video.volume >= 0.5) {
+    volumeLevel = "high";
+  } else {
+    volumeLevel = "low";
+  }
+  videoContainer.dataset.volumeLevel = volumeLevel;
 });
 
 // View Modes
