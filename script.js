@@ -14,8 +14,6 @@ const videoContainer = document.querySelector(".video-container");
 const timelineContainer = document.querySelector(".timeline-container");
 const video = document.querySelector("video");
 
-playPauseBtn.addEventListener("click", togglePlay);
-
 document.addEventListener("keydown", (e) => {
   const tagName = document.activeElement.tagName.toLowerCase();
 
@@ -52,6 +50,10 @@ document.addEventListener("keydown", (e) => {
       break;
   }
 });
+
+// Play/Pause
+playPauseBtn.addEventListener("click", togglePlay);
+video.addEventListener("click", togglePlay);
 
 function togglePlay() {
   video.paused ? video.play() : video.pause();
